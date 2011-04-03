@@ -2,20 +2,19 @@
 # http://gregmoreno.ca/preventing-model-explosion-via-rails-serialization/
 
 module ActiveRecord
-  module AttributeSerializer
-  	
-  	def included(base)
+  module HasSerializedAssociation
+  	def self.included(base)
   		base.send :extend, ClassMethods
-  		Rails.logger.debug "---- AttributeSerializer loaded ----"
+  		Rails.logger.debug "---- HasSerialized loaded ----"
   	end
  
     module ClassMethods
  
-      def serializeable(serialized, serialized_accessors={}) 
+      def has_serialized(serialized, serialized_accessors={}) 
         serialize serialized, serialized_accessors.class
  
         serialized_attr_accessor serialized, serialized_accessors
-        default_serialized_attr serialized,  serialized_accessors
+        default_serialized_attr  serialized, serialized_accessors
       end
  
       # Creates the accessors
@@ -41,6 +40,5 @@ module ActiveRecord
         end
       end
     end
- 
   end
 end

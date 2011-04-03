@@ -1,3 +1,1 @@
-require 'attribute_serializer'
-
-ActiveRecord::Base.send :include, ActiveRecord::AttributeSerializer
+ActiveRecord::Base.send :include, ActiveRecord::HasSerializedAssociation
