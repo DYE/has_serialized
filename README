@@ -1,0 +1,24 @@
+AttributeSerializer
+===================
+
+Based on the Attribute Serializer article written by Greg Moreno
+http://gregmoreno.ca/preventing-model-explosion-via-rails-serialization/
+
+
+Example
+=======
+
+class User < ActiveRecord::Base
+	serializable :preferences, :show_email => false, :locale => :en
+end
+
+u = User.new  # automatically assigns the default preferences
+u.preferences 
+=> {:show_email => false, :locale => :en}
+ 
+u.show_email = true  # I can change it like an attribute via @user.update_attributes(params[:user])
+u.preferences
+=> {:show_email => true, :locale => :en}
+
+
+Copyright (c) 2011 Greg Moreno, released under the MIT license
